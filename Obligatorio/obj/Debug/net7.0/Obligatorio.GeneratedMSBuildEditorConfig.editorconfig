@@ -1,0 +1,145 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Obligatorio
+build_property.RootNamespace = Obligatorio
+build_property.ProjectDir = C:\Users\CHAMBEAR\Desktop\CTC\Tercer Semestre\Programacion 3\Obligatorio\TrueOB\Obligatorio\Obligatorio\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\CHAMBEAR\Desktop\CTC\Tercer Semestre\Programacion 3\Obligatorio\TrueOB\Obligatorio\Obligatorio
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Horarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9yYXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Horarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9yYXJpb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Horarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9yYXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Horarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9yYXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Horarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9yYXJpb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Peliculas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Peliculas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Peliculas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Peliculas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Peliculas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVsaWN1bGFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Reservas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Reservas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Reservas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Reservas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Reservas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Salas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Salas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Salas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Salas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Salas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Usuarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Usuarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Usuarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Usuarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Usuarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CHAMBEAR/Desktop/CTC/Tercer Semestre/Programacion 3/Obligatorio/TrueOB/Obligatorio/Obligatorio/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-hdgp7y90f2
