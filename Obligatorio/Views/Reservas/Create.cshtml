@@ -2,26 +2,106 @@
 
 @{
     ViewData["Title"] = "Create";
+    
+}
+@{
+    var mensajeError = TempData["mensajeErrorReserva"] as string;
+}
+@{
+    //var AsientoSelec = "";
+    //Horario HorarioSelec = new Horario();
+    //bool resultadoValidacion = (bool)ViewBag.Controller.GetType()
+    //    .GetMethod("Validacion")
+    //    .Invoke(ViewBag.Controller, new object[] { AsientoSelec, HorarioSelec });
 }
 
 <h1>Create</h1>
 
 <h4>Reserva</h4>
 <hr />
+@if (!string.IsNullOrEmpty(mensajeError))
+{
+    <div class="alert alert-danger">
+        @mensajeError
+    </div>
+}
 <div class="row">
-    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <p>@ViewBag.Horario.Pelicula.Titulo</p>
+
             <div class="form-group">
                 <label asp-for="Asientos" class="control-label"></label>
-                <input asp-for="Asientos" class="form-control" />
+                <input readonly id="inputAsiento" asp-for="Asientos" class="form-control"/>
                 <span asp-validation-for="Asientos" class="text-danger"></span>
             </div>
+            <div class="w-100 d-flex flex-wrap justify-content-start flex-grow-1">
+                @for (int i = 1; i <= ViewBag.Horario.Sala.Capacidad; i++)
+                { 
+                    var ocupado = false;
+                    foreach(string item in ViewBag.AsientosOcupados)
+                    {
+                        if (item!=null && int.Parse(item)==i)
+                        {
+                            ViewBag.EstiloAsiOcu = "text-decoration:none;background-color:red;color:white;width:50px; height:50px;margin:5px; border:solid 1px red; display:flex; justify-content:center; align-items:center;";
+                            ocupado = true;
+                            <a id="a_@i" style="@ViewBag.EstiloAsiOcu">
+                                @i
+                            </a>
+                        }
+                    }
+                    if (!ocupado)
+                    {
+                        <a id="a_@i" onclick="cambiarColor(@i)" style="text-decoration:none;color:black;width:50px; height:50px;margin:5px; border:solid 1px #000000; display:flex; justify-content:center; align-items:center;">
+                            @i
+                         </a>   
+                    }
+                }
+
+            <script>
+                function cambiarColor(i){
+                    let elAsi = document.getElementById(`a_${i}`);
+                    if (elAsi.style.backgroundColor == 'white' || elAsi.style.backgroundColor == '') {
+                        elAsi.style.backgroundColor='green';
+                        elAsi.style.color='white'
+                        checkarAsiento(i);
+                    }else{
+                        elAsi.style.backgroundColor = 'white';
+                        elAsi.style.color = 'black'
+                        checkarAsiento(i);
+                    }
+                }
+                function checkarAsiento(i){
+                    let elInput = document.getElementById('inputAsiento');
+                    let elString = elInput.value;
+                    let elIndice=-1
+                    let elArray=[]
+                    
+                    if(elString.length>0){
+                        elArray = elString.split(',');
+                        elIndice = elArray.indexOf(`${i}`);
+                    }
+
+                    if (elIndice != -1) {
+                        elArray.splice(elIndice,1);
+                        elInput.value = elArray.join(',')
+                    }else{
+                        if (elString.length > 0) {
+                            elInput.value += `,${i}`
+                        } else {
+                            elInput.value = `${i}`
+                        }
+                    }
+
+                }
+            </script>
+            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-    </div>
+    
 </div>
 
 <div>

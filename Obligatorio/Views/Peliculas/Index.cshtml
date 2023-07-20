@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-controller="Peliculas" asp-action="Index">
+    <p class="text-center fw-bold">
+        Buscar Pelicula: <input type="text" name="buscar" class="form-text mb-3 me-2" />
+        <input type="submit" value="Buscar" class="btn btn-sm btn-success fw-bold" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>

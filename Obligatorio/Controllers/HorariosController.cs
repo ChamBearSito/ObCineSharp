@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,9 @@ namespace Obligatorio.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Horarios != null ? 
-                          View(await _context.Horarios.ToListAsync()) :
+                          View(await _context.Horarios
+                          .Include(h => h.Pelicula)
+                          .Include(h => h.Sala).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Horarios'  is null.");
         }
 
@@ -48,16 +52,51 @@ namespace Obligatorio.Controllers
         // GET: Horarios/Create
         public IActionResult Create()
         {
-            return View();
+            var modeloSecundarioPelis=_context.Peliculas.ToList();
+            var modeloSecundarioSalas = _context.Salas.ToList();
+            
+            // Crea una lista de elementos SelectListItem para usar en el elemento <select>
+            var opcionesP = new List<SelectListItem>();
+            foreach (var item in modeloSecundarioPelis)
+            {
+                opcionesP.Add(new SelectListItem
+                {
+                    Value = item.Id.ToString(), // Asigna el valor de la propiedad Id del modelo secundario
+                    Text = item.Titulo, // Asigna el valor de la propiedad Nombre del modelo secundario
+                    Selected = false
+                }) ;
+            }
+            var opcionesS = new List<SelectListItem>();
+            foreach (var item in modeloSecundarioSalas)
+            {
+                opcionesS.Add(new SelectListItem
+                {
+                    Value = item.Id.ToString(), // Asigna el valor de la propiedad Id del modelo secundario
+                    Text = item.Numero.ToString(), // Asigna el valor de la propiedad Nombre del modelo secundario
+                    Selected = false
+                });
+            }
+            var modelo = new Horario
+            {
+                OpcionesModeloPelicula = opcionesP,
+                OpcionesModeloSala = opcionesS
+            };
+            
+            return View(modelo);
         }
 
         // POST: Horarios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fecha,Hora")] Horario horario)
+        
+        public async Task<IActionResult> Create(Horario horario, int Pelicula,int Sala)
         {
+            var laPeli=Array.Find(_context.Peliculas.ToArray(), x => x.Id == Pelicula);
+            horario.Pelicula = laPeli;
+            var laSala = Array.Find(_context.Salas.ToArray(), x => x.Id == Sala);
+            horario.Sala = laSala;
+            Console.WriteLine(horario);
             if (ModelState.IsValid)
             {
                 _context.Add(horario);

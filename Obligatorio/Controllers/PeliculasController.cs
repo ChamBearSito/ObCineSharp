@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,16 +21,36 @@ namespace Obligatorio.Controllers
         }
 
         // GET: Peliculas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string buscar)
         {
-              return _context.Peliculas != null ? 
-                          View(await _context.Peliculas.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Peliculas'  is null.");
+            var peliculaFilter = _context.Peliculas.ToList();
+
+            if (!String.IsNullOrEmpty(buscar))
+            {
+                if(float.TryParse(buscar, out float buscarnum))
+                {
+                    peliculaFilter = peliculaFilter.Where(c =>
+                    c.Clasificacion!.ToString()!.Contains(buscar) ||
+                    c.Clasificacion>=buscarnum
+                    ).ToList();
+                }
+                else
+                {
+                    peliculaFilter = peliculaFilter.Where(c =>
+                    c.Titulo!.ToLower().Contains(buscar.ToLower()) ^
+                    c.Genero!.ToLower().Contains(buscar.ToLower())
+                    ).ToList();
+                }         
+            }
+            return _context.Peliculas != null ?
+                          View(peliculaFilter.ToList()) :
+                          Problem("Entity set 'ApplicationDbContext.Usuarios' is null.");
         }
 
         // GET: Peliculas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null || _context.Peliculas == null)
             {
                 return NotFound();
@@ -41,6 +62,21 @@ namespace Obligatorio.Controllers
             {
                 return NotFound();
             }
+
+            var modeloSecundarioHoras =await _context.Horarios
+                                        .Include(h => h.Pelicula)
+                                        .Include(h => h.Sala)
+                                        .ToListAsync();
+            var opcionesH = new List<Horario>();
+            foreach (var item in modeloSecundarioHoras)
+            {
+                if (item.Pelicula!=null && item.Pelicula.Id==id)
+                {
+                    opcionesH.Add(item);
+                }
+            }
+
+            pelicula.OpcionesModeloHorarios = opcionesH;
 
             return View(pelicula);
         }
@@ -56,8 +92,10 @@ namespace Obligatorio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Genero,Clasificacion,Duracion,Sinopsis")] Pelicula pelicula)
+        public async Task<IActionResult> Create(Pelicula pelicula, string Clasificacion)
         {
+            float laClas = float.Parse(Clasificacion.Replace('.',','));
+            pelicula.Clasificacion = laClas;
             if (ModelState.IsValid)
             {
                 _context.Add(pelicula);

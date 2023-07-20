@@ -1,5 +1,4 @@
 ﻿@model Obligatorio.Models.Horario
-
 @{
     ViewData["Title"] = "Create";
 }
@@ -10,26 +9,24 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form asp-controller="Horarios" asp-action="Create" method="post">
             <div class="form-group">
                 <label asp-for="Pelicula" class="control-label"></label>
-                <select asp-for="Pelicula" class="form-control" />
+                <select asp-for="Pelicula" asp-items="Model.OpcionesModeloPelicula" class="form-control">
+                    <option>--Please Select a Pelicula--</option>
+                </select>
                 <span asp-validation-for="Pelicula" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
+                <input asp-for="Fecha" id="pickDate" type="datetime-local" class="form-control" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Hora" class="control-label"></label>
-                <input asp-for="Hora" class="form-control" />
-                <span asp-validation-for="Hora" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Sala" class="control-label"></label>
-                <select asp-for="Sala" class="form-control" />
+                <select asp-for="Sala" asp-items="Model.OpcionesModeloSala" class="form-control">
+                    <option>--Please Select a Sala--</option>
+                </select>
                 <span asp-validation-for="Sala" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,6 +35,14 @@
         </form>
     </div>
 </div>
+<script>
+    let elPicker = document.getElementById('pickDate')
+    
+    var fechaActual = new Date();
+    let elMes = ((fechaActual.getMonth() + 1) * 10 / 100).toString().replace('.', '');
+    let laFecha=`${fechaActual.getFullYear()}-${elMes}-${fechaActual.getDate()}T00:00`
+    elPicker.value = laFecha;
+</script>
 
 <div>
     <a asp-action="Index">Back to List</a>

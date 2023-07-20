@@ -1,4 +1,6 @@
-﻿namespace Obligatorio.Models
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace Obligatorio.Models
 {
     public class Reserva
     {

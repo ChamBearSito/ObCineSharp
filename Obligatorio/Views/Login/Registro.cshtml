@@ -1,0 +1,33 @@
+﻿@model Usuario
+@{
+    Layout = "_Layout2";
+}
+@{
+    var mensajeError = TempData["mensajeError"] as string;
+}
+
+@if (!string.IsNullOrEmpty(mensajeError))
+{
+    <div class="alert alert-danger">
+        @mensajeError
+    </div>
+}
+
+<form asp-controller="Login" asp-action="Registro" method="post">
+    <div>
+        <label for="Nombre">Nombre:</label>
+        <input type="text" id="Nombre" asp-for="Nombre">
+    </div>
+    <div>
+        <label for="Correo">Correo:</label>
+        <input type="text" id="Correo" asp-for="Correo">
+    </div>
+
+    <div>
+        <label for="Password">Contraseña:</label>
+        <input type="password" id="Password" asp-for="Password">
+    </div>
+
+    <button type="submit">Registrar</button>
+    <a asp-controller="Login" asp-action="Logueo">Iniciar sesión</a>
+</form>

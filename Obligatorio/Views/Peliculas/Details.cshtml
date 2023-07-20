@@ -41,6 +41,15 @@
             @Html.DisplayFor(model => model.Sinopsis)
         </dd>
     </dl>
+    <dl>
+        <dt>Horarios</dt>
+        @foreach(var item in Model.OpcionesModeloHorarios)
+        {
+            <dd>
+                @Html.ActionLink(item.Fecha.ToString(), "Create","Reservas", item)
+            </dd>
+        }
+    </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

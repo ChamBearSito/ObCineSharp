@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Obligatorio.Datos;
 
@@ -11,9 +12,11 @@ using Obligatorio.Datos;
 namespace Obligatorio.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230711054141_SecondCommit")]
+    partial class SecondCommit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,17 +36,16 @@ namespace Obligatorio.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PeliculaId")
+                    b.Property<DateTime>("Hora")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Pelicula")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalaId")
+                    b.Property<int>("Sala")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PeliculaId");
-
-                    b.HasIndex("SalaId");
 
                     b.ToTable("Horarios");
                 });
@@ -141,21 +143,6 @@ namespace Obligatorio.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Obligatorio.Models.Horario", b =>
-                {
-                    b.HasOne("Obligatorio.Models.Pelicula", "Pelicula")
-                        .WithMany()
-                        .HasForeignKey("PeliculaId");
-
-                    b.HasOne("Obligatorio.Models.Sala", "Sala")
-                        .WithMany()
-                        .HasForeignKey("SalaId");
-
-                    b.Navigation("Pelicula");
-
-                    b.Navigation("Sala");
                 });
 
             modelBuilder.Entity("Obligatorio.Models.Reserva", b =>

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using NuGet.Protocol;
 using Obligatorio.Models;
 using System.Diagnostics;
 
@@ -15,7 +17,10 @@ namespace Obligatorio.Controllers
 
         public IActionResult Index()
         {
+            var laCock=Request.Cookies["UsuarioCookie"];
+            ViewBag.UsuarioCookie = JsonConvert.DeserializeObject<Usuario>(laCock!.ToString());
             return View();
+             
         }
 
         public IActionResult Privacy()
