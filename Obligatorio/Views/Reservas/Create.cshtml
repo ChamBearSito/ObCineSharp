@@ -8,11 +8,14 @@
     var mensajeError = TempData["mensajeErrorReserva"] as string;
 }
 @{
-    //var AsientoSelec = "";
-    //Horario HorarioSelec = new Horario();
-    //bool resultadoValidacion = (bool)ViewBag.Controller.GetType()
-    //    .GetMethod("Validacion")
-    //    .Invoke(ViewBag.Controller, new object[] { AsientoSelec, HorarioSelec });
+    if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout3.cshtml";
+    }
 }
 
 <h1>Create</h1>

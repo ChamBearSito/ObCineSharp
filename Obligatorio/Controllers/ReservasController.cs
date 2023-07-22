@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using NuGet.Protocol;
 using Obligatorio.Datos;
 using Obligatorio.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace Obligatorio.Controllers
 {
@@ -56,7 +58,10 @@ namespace Obligatorio.Controllers
         // GET: Reservas/Create
         public IActionResult Create(Horario hor)
         {
-            var laH=_context.Horarios
+            var laCock = Request.Cookies["UsuarioCookie"];
+            ViewBag.UsuarioCookie = JsonConvert.DeserializeObject<Usuario>(laCock!.ToString());
+
+            var laH =_context.Horarios
                 .Include(h=>h.Pelicula)
                 .Include(h=>h.Sala)
                 .FirstOrDefault(h => h.Id == hor.Id);
@@ -117,6 +122,42 @@ namespace Obligatorio.Controllers
         // POST: Reservas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public bool EnviarCorreo(Reserva reserva)
+        {
+            var elHorario = _context.Horarios
+                .Include(x => x.Pelicula)
+                .Include(x => x.Sala)
+                .FirstOrDefault(x => x.Id == reserva.Horario!.Id);
+
+            reserva.Horario = elHorario;
+
+            // Configurar el cliente SMTP
+            SmtpClient clienteSmtp = new SmtpClient("smtp.office365.com", 587);
+            clienteSmtp.EnableSsl = true;
+            clienteSmtp.UseDefaultCredentials = false;
+            clienteSmtp.Credentials = new NetworkCredential("lolpelu@hotmail.com", "elcalvo2003");
+
+            // Crear el objeto MailMessage
+            MailMessage mensaje = new MailMessage();
+            mensaje.From = new MailAddress("lolpelu@hotmail.com");
+            mensaje.To.Add(new MailAddress(reserva!.Usuario!.Correo!));
+            mensaje.Subject = $"Reserva CINE: {reserva!.Horario!.Pelicula!.Titulo}";
+            mensaje.Body = $"{reserva.Horario.Fecha}";
+
+            try
+            {
+                // Enviar el correo
+                clienteSmtp.Send(mensaje);
+                Console.WriteLine("El correo se envió correctamente.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al enviar el correo: " + ex.Message);
+                return false;
+            }
+        }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(string Asientos)
@@ -141,11 +182,15 @@ namespace Obligatorio.Controllers
             reserva.Asientos = Asientos;
             if (ModelState.IsValid)
             {
-                _context.Add(reserva);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (EnviarCorreo(reserva))
+                {
+                    _context.Add(reserva);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index","Home");
+                }
+                TempData["mensajeErrorReserva"] = "No se pudo mandar el correo, verifique su email!"; 
             }
-            return View(reserva);
+            return RedirectToAction("Create", "Reservas");
         }
 
         // GET: Reservas/Edit/5

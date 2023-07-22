@@ -12,18 +12,36 @@
         @mensajeError
     </div>
 }
+<div style="display:flex;height:100%;align-items:center;justify-content:center">
+     <div style="display:flex;justify-content:center;">
+        <div>
+         <h2>LOGIN</h2>
 
-<form asp-controller="Login" asp-action="Logueo" method="post">
-    <div>
-        <label for="Correo">Correo:</label>
-        <input type="text" id="Correo" asp-for="Correo">
+        <form asp-controller="Login" asp-action="Logueo" method="post">
+            <div class="LoginDiv">
+                <input onchange="checkInputText('correo')" class="correoInputDiv" type="text" id="Correo" asp-for="Correo">
+                <label class="correoLabelDiv" for="Correo">Correo</label>
+            </div>
+
+            <div class="LoginDiv">
+                <input onchange="checkInputText('pass')" class="passInputDiv" type="password" id="Password" asp-for="Password">
+                <label class="passLabelDiv" for="Password">Contraseña</label>
+            </div>
+
+            <button class="btnLogin" type="submit">Entrar</button>
+            <a asp-controller="Login" asp-action="Registro">Registro</a>
+        </form>
+        </div>
     </div>
-
-    <div>
-        <label for="Password">Contraseña:</label>
-        <input type="password" id="Password" asp-for="Password">
-    </div>
-
-    <button type="submit">Iniciar sesión</button>
-    <a asp-controller="Login" asp-action="Registro">Registro</a>
-</form>
+    <script>
+        function checkInputText(id){
+            let elInput = document.getElementsByClassName(`${id}InputDiv`);
+            let elLabel = document.getElementsByClassName(`${id}LabelDiv`)[0];
+            if (elInput[0].value.length>0) {
+                elLabel.style.opacity = 0;
+            }else{
+                elLabel.style.opacity = .4;
+            }
+        }
+    </script>
+</div>

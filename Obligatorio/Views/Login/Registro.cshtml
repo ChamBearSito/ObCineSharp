@@ -12,22 +12,38 @@
         @mensajeError
     </div>
 }
+<div style="display:flex;height:100%;align-items:center;justify-content:center">
+    <div style="display:flex;justify-content:center;">
+        <div>
+            <h2>REGISTRO</h2>
+            <form asp-controller="Login" asp-action="Registro" method="post">
+                <div class="LoginDiv">
+                    <input onchange="checkInputText('nombre')" class="nombreInputDiv" type="text" id="Nombre" asp-for="Nombre">
+                    <label class="nombreLabelDiv" for="Nombre">Nombre</label>
+                </div>
+                <div class="LoginDiv">
+                    <input onchange="checkInputText('correo')" class="correoInputDiv" type="email" id="Correo" asp-for="Correo">
+                    <label class="correoLabelDiv" for="Correo">Correo</label>
+                </div>
+                <div class="LoginDiv">
+                    <input onchange="checkInputText('pass')" class="passInputDiv" type="password" id="Password" asp-for="Password">
+                    <label class="passLabelDiv" for="Password">Contraseña</label>
+                </div>
 
-<form asp-controller="Login" asp-action="Registro" method="post">
-    <div>
-        <label for="Nombre">Nombre:</label>
-        <input type="text" id="Nombre" asp-for="Nombre">
+                <button class="btnLogin" type="submit">Registrar</button>
+                <a asp-controller="Login" asp-action="Logueo">Login</a>
+            </form>
+        </div>
     </div>
-    <div>
-        <label for="Correo">Correo:</label>
-        <input type="text" id="Correo" asp-for="Correo">
-    </div>
-
-    <div>
-        <label for="Password">Contraseña:</label>
-        <input type="password" id="Password" asp-for="Password">
-    </div>
-
-    <button type="submit">Registrar</button>
-    <a asp-controller="Login" asp-action="Logueo">Iniciar sesión</a>
-</form>
+    <script>
+        function checkInputText(id) {
+            let elInput = document.getElementsByClassName(`${id}InputDiv`);
+            let elLabel = document.getElementsByClassName(`${id}LabelDiv`)[0];
+            if (elInput[0].value.length > 0) {
+                elLabel.style.opacity = 0;
+            } else {
+                elLabel.style.opacity = .4;
+            }
+        }
+    </script>
+</div>

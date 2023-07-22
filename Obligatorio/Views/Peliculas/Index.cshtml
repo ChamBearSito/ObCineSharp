@@ -3,12 +3,24 @@
 @{
     ViewData["Title"] = "Index";
 }
+@{
+    if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout3.cshtml";
+    }
+}
 
 <h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <form asp-controller="Peliculas" asp-action="Index">
     <p class="text-center fw-bold">
         Buscar Pelicula: <input type="text" name="buscar" class="form-text mb-3 me-2" />
@@ -55,9 +67,13 @@
                 @Html.DisplayFor(modelItem => item.Sinopsis)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">| Edit |</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
             </td>
         </tr>
 }

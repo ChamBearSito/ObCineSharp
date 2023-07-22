@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Obligatorio.Datos;
 using Obligatorio.Models;
 
@@ -23,6 +24,9 @@ namespace Obligatorio.Controllers
         // GET: Peliculas
         public async Task<IActionResult> Index(string buscar)
         {
+            var laCock = Request.Cookies["UsuarioCookie"];
+            ViewBag.UsuarioCookie = JsonConvert.DeserializeObject<Usuario>(laCock!.ToString());
+
             var peliculaFilter = _context.Peliculas.ToList();
 
             if (!String.IsNullOrEmpty(buscar))
@@ -50,6 +54,8 @@ namespace Obligatorio.Controllers
         // GET: Peliculas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var laCock = Request.Cookies["UsuarioCookie"];
+            ViewBag.UsuarioCookie = JsonConvert.DeserializeObject<Usuario>(laCock!.ToString());
 
             if (id == null || _context.Peliculas == null)
             {
@@ -66,6 +72,7 @@ namespace Obligatorio.Controllers
             var modeloSecundarioHoras =await _context.Horarios
                                         .Include(h => h.Pelicula)
                                         .Include(h => h.Sala)
+                                        .Where(h => DateTime.Now.CompareTo(h.Fecha) <= 0)
                                         .ToListAsync();
             var opcionesH = new List<Horario>();
             foreach (var item in modeloSecundarioHoras)
