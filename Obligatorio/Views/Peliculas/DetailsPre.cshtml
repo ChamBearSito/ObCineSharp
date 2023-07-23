@@ -1,59 +1,49 @@
 ﻿@model Obligatorio.Models.Pelicula
 
-@{
-    ViewData["Title"] = "Details";
-}
-@{
-    if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_Layout3.cshtml";
-    }
-}
-
-<h1>Details</h1>
-
 <div>
-    <h4>Pelicula</h4>
+
+    <div>
+        <a id="closebtn" class="close">×</a>
+        <h4 class="modal-title" id="myModalLabel">Detalles</h4>
+    </div>
+
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <dl class="dl-horizontal">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Titulo)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Titulo)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Genero)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Genero)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Clasificacion)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Clasificacion)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Duracion)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Duracion)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Sinopsis)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Sinopsis)
         </dd>
     </dl>
     <dl>
         <dt>Horarios</dt>
-        @if(Model.OpcionesModeloHorarios.Count>0){
+        @if (Model.OpcionesModeloHorarios.Count > 0)
+        {
             @foreach (var item in Model.OpcionesModeloHorarios)
             {
                 <dd>
@@ -63,15 +53,8 @@
         }
         else
         {
-            <p>No tiene Horarios!</p>    
+            <p>No tiene Horarios!</p>
         }
 
     </dl>
-</div>
-<div>
-    @if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
-    {
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit |</a>
-    }
-    <a asp-action="Index">Back to List</a>
 </div>

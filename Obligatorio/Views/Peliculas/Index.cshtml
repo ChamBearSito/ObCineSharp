@@ -67,15 +67,50 @@
                 @Html.DisplayFor(modelItem => item.Sinopsis)
             </td>
             <td>
-                
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    @if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">| Edit |</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
+                <a class="btn btn-primary abrirModal" data-id="@item.Id">Detalles</a>
+                @if (ViewBag.UsuarioCookie.Correo == "Admin@Admin.com")
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">| Edit |</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
             </td>
         </tr>
 }
     </tbody>
 </table>
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+    <script>
+        $('.abrirModal').on('click', function () {
+            let valorId = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Details","Peliculas")',
+                type: 'POST',
+                data: { Id: valorId },
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('#myModal').show();
+
+                    const button = document.getElementById('closebtn');
+                    button.addEventListener('click', function () {
+                        $('#myModal').hide();
+                    })
+                },
+                error: function (xmlResponse) {
+                    alert("Error en la solicitud del modal")
+                }
+            });
+        });
+
+    </script>
+
+}

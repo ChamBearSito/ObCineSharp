@@ -17,13 +17,55 @@
     <h3 type="text">Bienvenido @ViewBag.UsuarioCookie.Nombre!</h3>
 </div>
 <div style="display:flex; flex-wrap:wrap; justify-content:center">
-    @foreach (var item in ViewBag.Cartelera)
+    @if (ViewBag.Cartelera.Length>0)
     {
-        <a class="peliCartelera"
-           asp-controller="Peliculas"
-           asp-action="Details"
-           asp-route-id="@item.Id">
-            @item.Titulo
-        </a>
+        @foreach (var item in ViewBag.Cartelera)
+        {
+            <a class="peliCartelera abrirModal"
+               data-id="@item.Id">
+                @item.Titulo
+            </a>
+        }
+
     }
+    else
+    {
+        <p>NO HAY PELICULAS EN LA CARTELERA!!</p>
+    }
+
 </div>
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+    <script>
+        $('.abrirModal').on('click', function () {
+            let valorId = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("Details","Peliculas")',
+                type: 'POST',
+                data: { Id: valorId },
+                success: function (data) {
+                    $('#myModalContent').html(data);
+                    $('#myModal').show();
+
+                    const button = document.getElementById('closebtn');
+                    button.addEventListener('click', function () {
+                        $('#myModal').hide();
+                    })
+                },
+                error: function (xmlResponse) {
+                    alert("Error en la solicitud del modal")
+                }
+            });
+        });
+
+    </script>
+
+}

@@ -50,43 +50,55 @@ namespace Obligatorio.Controllers
                           View(peliculaFilter.ToList()) :
                           Problem("Entity set 'ApplicationDbContext.Usuarios' is null.");
         }
-
-        // GET: Peliculas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int Id)
         {
-            var laCock = Request.Cookies["UsuarioCookie"];
-            ViewBag.UsuarioCookie = JsonConvert.DeserializeObject<Usuario>(laCock!.ToString());
-
-            if (id == null || _context.Peliculas == null)
-            {
-                return NotFound();
-            }
-
-            var pelicula = await _context.Peliculas
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (pelicula == null)
-            {
-                return NotFound();
-            }
-
-            var modeloSecundarioHoras =await _context.Horarios
+            
+            Pelicula peli = _context.Peliculas.Find(Id)!;
+            var modeloSecundarioHoras = _context.Horarios
                                         .Include(h => h.Pelicula)
                                         .Include(h => h.Sala)
                                         .Where(h => DateTime.Now.CompareTo(h.Fecha) <= 0)
-                                        .ToListAsync();
+                                        .ToList();
             var opcionesH = new List<Horario>();
+
             foreach (var item in modeloSecundarioHoras)
             {
-                if (item.Pelicula!=null && item.Pelicula.Id==id)
+                if (item.Pelicula != null && item.Pelicula.Id == peli.Id)
                 {
                     opcionesH.Add(item);
                 }
             }
 
-            pelicula.OpcionesModeloHorarios = opcionesH;
-
-            return View(pelicula);
+            peli!.OpcionesModeloHorarios = opcionesH;
+            return PartialView("DetailsPre", peli);
         }
+
+        // GET: Peliculas/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    var laCock = Request.Cookies["UsuarioCookie"];
+        //    ViewBag.UsuarioCookie = JsonConvert.DeserializeObject<Usuario>(laCock!.ToString());
+
+        //    var pelicula = _context.Peliculas
+        //        .FirstOrDefault(m => m.Id == id);
+
+        //    var modeloSecundarioHoras =_context.Horarios
+        //                                .Include(h => h.Pelicula)
+        //                                .Include(h => h.Sala)
+        //                                .Where(h => DateTime.Now.CompareTo(h.Fecha) <= 0)
+        //                                .ToList();
+        //    var opcionesH = new List<Horario>();
+        //    foreach (var item in modeloSecundarioHoras)
+        //    {
+        //        if (item.Pelicula!=null && item.Pelicula.Id==id)
+        //        {
+        //            opcionesH.Add(item);
+        //        }
+        //    }
+
+        //    pelicula!.OpcionesModeloHorarios = opcionesH;
+        //    return View(pelicula);
+        //}
 
         // GET: Peliculas/Create
         public IActionResult Create()

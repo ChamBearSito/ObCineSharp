@@ -36,7 +36,7 @@ namespace Obligatorio.Controllers
                 {
                     if (u.Password != Usuario.Password)
                     {
-                        TempData["mensajeError"] = "La contrasenia es incorrecta!";
+                        TempData["mensajeError"] = "La contraseña es incorrecta!";
                     }
                     else
                     {
