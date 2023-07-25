@@ -96,6 +96,14 @@ namespace Obligatorio.Controllers
             horario.Pelicula = laPeli;
             var laSala = Array.Find(_context.Salas.ToArray(), x => x.Id == Sala);
             horario.Sala = laSala;
+            foreach (var item in _context.Horarios.Include(h => h.Sala).ToArray())
+            {
+                if (horario.Fecha.CompareTo(item.Fecha) == 0 && horario.Sala!.Id == item.Sala!.Id)
+                {
+                    TempData["mensajeErrorHorario"] = "El horario no puede tener la misma fecha en la misma sala";
+                    return RedirectToAction("Create", "Horarios");
+                }
+            }
             Console.WriteLine(horario);
             if (ModelState.IsValid)
             {

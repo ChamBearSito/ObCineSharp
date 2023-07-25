@@ -2,9 +2,17 @@
 @{
     ViewData["Title"] = "Create";
 }
+@{
+    var mensajeError = TempData["mensajeErrorHorario"] as string;
+}
 
 <h1>Create</h1>
-
+@if (!string.IsNullOrEmpty(mensajeError))
+{
+    <div class="alert alert-danger">
+        @mensajeError
+    </div>
+}
 <h4>Horario</h4>
 <hr />
 <div class="row">

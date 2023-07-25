@@ -139,11 +139,11 @@ namespace Obligatorio.Controllers
 
             // Crear el objeto MailMessage
             MailMessage mensaje = new MailMessage();
-            mensaje.From = new MailAddress("lolpelu@hotmail.com");
+            mensaje.From = new MailAddress("lolpelu@hotmail.com","CineTico");
             mensaje.To.Add(new MailAddress(reserva!.Usuario!.Correo!));
             mensaje.Subject = $"Reserva CINE: {reserva!.Horario!.Pelicula!.Titulo}";
-            mensaje.Body = $"{reserva.Horario.Fecha}";
-
+            mensaje.Body = $"<html><header><h1>RESERVA</h1><header><body><ul><li>Pelicula: {reserva.Horario.Pelicula.Titulo}</li><li>Fecha: {reserva.Horario.Fecha.ToShortDateString()}</li><li>Hora: {reserva.Horario.Fecha.ToShortTimeString()}</li><li>Sala: {reserva.Horario.Sala!.Numero}</li><li>Asientos: {reserva.Asientos}</li></ul></body><footer><h2>Para más información:</h2><img style='width:100px;height:100px;' src=\"https://i.ibb.co/NsddTT1/QRPage.png\" alt=\"QRPage\" border=\"0\"><h3>SCAN ME!</h3></footer></html>";
+            mensaje.IsBodyHtml = true;
             try
             {
                 // Enviar el correo
